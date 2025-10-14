@@ -1,15 +1,27 @@
 // src/index.js
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+function AllMeetups() {
+  return <h1>All Meetups</h1>;
+}
+function NewMeetup() {
+  return <h1>New Meetup</h1>;
+}
 
-reportWebVitals();
+function App() {
+  return (
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link> | <Link to="/new-meetup">New</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<AllMeetups />} />
+        <Route path="/new-meetup" element={<NewMeetup />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
